@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipie/feature/home/model/category_gruild_model.dart';
 import 'package:recipie/feature/home/model/category_list_model.dart';
+import 'package:recipie/feature/home/view/peges/search_result_page.dart';
 
 class Categorypage extends StatelessWidget {
   const Categorypage({super.key});
@@ -35,7 +36,14 @@ class Categorypage extends StatelessWidget {
                       child: Column(
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SearchResultPage(recipeName: categories[index].name),
+                                ),
+                              );
+                            },
                             child: Container(
                               height: height * 0.08,
                               width: width * 0.2,
@@ -89,7 +97,12 @@ class Categorypage extends StatelessWidget {
                     itemCount: categoryGridModel.length,
                     itemBuilder: (context, index) {
                       return InkWell(
-                        onTap: () {},
+                        onTap: () {Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SearchResultPage(recipeName: categoryGridModel[index].title,),
+                                ),
+                              );},
                         child: Container(
                           height: height * 0.2,
                           width: width * 0.2,
@@ -136,7 +149,12 @@ class Categorypage extends StatelessWidget {
                       child: Column(
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () {Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SearchResultPage(recipeName:categoryPrefference[index].title ,),
+                                ),
+                              );},
                             child: Container(
                               height: height * 0.08,
                               width: width * 0.2,
