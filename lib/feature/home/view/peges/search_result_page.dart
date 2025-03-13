@@ -49,7 +49,7 @@ class SearchResultPage extends StatelessWidget {
                           ),
                         ),
                          Text(
-                          "${recipes[index].label}",
+                          "${recipes[index].label}",overflow: TextOverflow.ellipsis,
                         ),
                       ],
                     );
