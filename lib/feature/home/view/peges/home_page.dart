@@ -30,10 +30,13 @@ class Homepage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   )),
                   hintText: " what's cooking in your mind?",
-                  trailing: const [
-                    Icon(
-                      Icons.search,
-                      color: Colors.amber,
+                  trailing: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.search,
+                        color: Colors.amber,
+                      ),
                     ),
                   ]),
               Container(

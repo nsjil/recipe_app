@@ -26,7 +26,15 @@ class Searchpage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SearchBar(
-                trailing: [const Icon(Icons.search)],
+                trailing: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.search,
+                      color: Colors.amber,
+                    ),
+                  ),
+                ],
                 shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10))),
                 hintText: "What's cooking in your mind...?",

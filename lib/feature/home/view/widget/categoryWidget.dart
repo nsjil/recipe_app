@@ -1,5 +1,7 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:recipie/feature/home/service/api_service.dart';
+import 'package:recipie/feature/home/view/peges/detail_page.dart';
 
 class Categorywidget extends StatelessWidget {
   final String recipe;
@@ -7,6 +9,9 @@ class Categorywidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hight = MediaQuery.of(context).size;
+    final width = MediaQuery.of(context).size;
+
     return FutureBuilder(
         future: RecipeApiService.getRecipes(recipe),
         builder: (context, snapShot) {
@@ -21,34 +26,43 @@ class Categorywidget extends StatelessWidget {
           }
 
           final recipes = snapShot.data!;
-          return SizedBox(
-            height: 50,
-            child: Flexible(
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                itemCount: recipes.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      children: [
-                        Image.network(
-                          recipes[index].image!,
-                          height: 100,
-                          width: 100,
+          return GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisSpacing: 10, mainAxisSpacing: 10, crossAxisCount: 2),
+            itemCount: recipes.length,
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailPage(
+                                item: recipes[index],
+                              )));
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                      height: hight.height * 0.13,
+                      width: width.width * 0.5,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(recipes[index].image!),
                           fit: BoxFit.cover,
                         ),
-                      ],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                  );
-                },
-              ),
-            ),
+                    Text(
+                      recipes[index].label!,
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              );
+            },
           );
         });
   }
