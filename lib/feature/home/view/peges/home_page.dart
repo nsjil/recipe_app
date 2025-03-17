@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:recipie/feature/home/view/peges/search_result_page.dart';
 import 'package:recipie/feature/home/view/widget/tapber.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
+    final searchcontroller=TextEditingController();
     return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -26,13 +28,21 @@ class Homepage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SearchBar(
+                  controller: searchcontroller,
                   shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   )),
                   hintText: " what's cooking in your mind?",
                   trailing: [
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SearchResultPage(
+                                      recipeName: searchcontroller.text,
+                                    )));
+                      },
                       icon: Icon(
                         Icons.search,
                         color: Colors.amber,
