@@ -62,70 +62,164 @@ class DetailPage extends StatelessWidget {
               ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                item.source!,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-              ),
-              Text(
-                "Calories : ${item.calories!.toInt()}",
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: item.calories! > 600 ? Colors.red : Colors.green),
-              )
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              CircleAvatar(
-                backgroundColor: Colors.red,
-                radius: 20,
-                child: Icon(
-                  Icons.share,
-                  color: Colors.white,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  item.source!,
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
                 ),
-              ),
-              CircleAvatar(
-                backgroundColor: Colors.red,
-                radius: 20,
-                child: Icon(
-                  Icons.save_alt_outlined,
-                  color: Colors.white,
-                ),
-              ),
-              CircleAvatar(
-                backgroundColor: Colors.red,
-                radius: 20,
-                child: Icon(Icons.bar_chart_rounded, color: Colors.white),
-              ),
-              CircleAvatar(
-                backgroundColor: Colors.red,
-                radius: 20,
-                child: Icon(Icons.content_paste_search_outlined,
-                    color: Colors.white),
-              ),
-            ],
+                Text(
+                  "Calories : ${item.calories!.toInt()}",
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: item.calories! > 600 ? Colors.red : Colors.green),
+                )
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text("Ingredients".toUpperCase(),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                InkWell(
+                  onTap: () {},
+                  child: CircleAvatar(
+                    backgroundColor: Colors.red,
+                    radius: 20,
+                    child: Icon(
+                      Icons.share,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: CircleAvatar(
+                    backgroundColor: Colors.red,
+                    radius: 20,
+                    child: Icon(
+                      Icons.save_alt_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          backgroundColor: Colors.red[400],
+                          title: Text('Digest Information'),
+                          content: SingleChildScrollView(
+                            child: ListBody(
+                              children: item.digest!.map((digestItem) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      digestItem.label!,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      'Total: ${digestItem.total!.toStringAsFixed(2)} ${digestItem.unit}',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    Text(
+                                      'Daily: ${digestItem.daily!.toStringAsFixed(2)}%',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    SizedBox(height: 10),
+                                  ],
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              child: Text('Close'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  child: CircleAvatar(
+                    backgroundColor: Colors.red,
+                    radius: 20,
+                    child: Icon(Icons.bar_chart_rounded, color: Colors.white),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: CircleAvatar(
+                    backgroundColor: Colors.red,
+                    radius: 20,
+                    child: Icon(Icons.content_paste_search_outlined,
+                        color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("recipe details".toUpperCase(),
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black54)),
+                    color: Colors.black)),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: () {},
-              child: Text(
-                item.url!,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "incredients :",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: item.ingredients!.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: Container(
+                    height: hright * 0.05,
+                    width: width * 0.17,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: NetworkImage(item.ingredients![index].image!),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    item.ingredients![index].text!,
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                );
+              },
             ),
           ),
         ],
