@@ -18,7 +18,7 @@ class _BottombarState extends State<Bottombar> {
     const Homepage(),
     const Categorypage(),
     const Searchpage(),
-    const Cartpage(),
+    const FavoratPage(),
   ];
 
   @override
@@ -34,7 +34,11 @@ class _BottombarState extends State<Bottombar> {
               icon: Icon(Icons.category), label: "CATEGORY"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "SEARCH"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_outlined), label: "CART")
+              icon: Icon(
+                Icons.favorite,
+                color: Colors.red,
+              ),
+              label: "FAVORATE")
         ],
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.red[400],

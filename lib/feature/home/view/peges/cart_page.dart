@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Cartpage extends StatelessWidget {
-  const Cartpage({super.key});
+class FavoratPage extends StatelessWidget {
+  const FavoratPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +15,27 @@ class Cartpage extends StatelessWidget {
               height: height * 0.03,
               color: Colors.white,
             )),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10.0,
+                mainAxisSpacing: 10.0,
+              ),
+              itemCount: 20, // Replace with the actual number of items
+              itemBuilder: (context, index) {
+                return Card(
+                  child: Center(
+                    child: Text('Item $index'),
+                  ),
+                );
+              },
+            ),
+          )
+        ],
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:recipie/feature/home/model/item_models.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -8,6 +9,7 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dataBox = Hive.box('favorite');
     final hright = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -44,6 +46,40 @@ class DetailPage extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
+                ValueListenableBuilder(
+                    valueListenable: dataBox.listenable(),
+                    builder: (context, Box box, widget) {
+                      bool saved = box.containsKey(item.uri);
+
+                      if (saved) {
+                        return IconButton(
+                            onPressed: () {
+                              box.delete(item.uri);
+                            },
+                            icon: Icon(Icons.favorite));
+                      } else {
+                        return IconButton(
+                            onPressed: () {
+                              box.put(item.uri, item.uri);
+                            },
+                            icon: Icon(Icons.favorite_border));
+                      }
+                    })
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  "Calories : ${item.calories!.toInt()}",
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: item.calories! > 999 ? Colors.red : Colors.green),
+                ),
                 Container(
                   height: hright * 0.04,
                   width: width * 0.18,
@@ -60,25 +96,6 @@ class DetailPage extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  item.source!,
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                ),
-                Text(
-                  "Calories : ${item.calories!.toInt()}",
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: item.calories! > 600 ? Colors.red : Colors.green),
-                )
               ],
             ),
           ),
@@ -258,7 +275,8 @@ class DetailPage extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
-                        image: NetworkImage(item.ingredients![index].image!),
+                        image:
+                            NetworkImage(item.ingredients![index].image ?? ''),
                         fit: BoxFit.cover,
                       ),
                     ),

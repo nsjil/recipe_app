@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:recipie/feature/home/view/peges/search_result_page.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:recipie/feature/home/view/widget/bootombar.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('favorite');
   runApp(const MyApp());
 }
 
