@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipie/feature/home/model/category_list_model.dart';
+import 'package:recipie/feature/home/view/peges/search_result_page.dart';
 
 class Searchpage extends StatelessWidget {
   const Searchpage({super.key});
@@ -7,6 +8,7 @@ class Searchpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final searchController = TextEditingController();
 
     return Scaffold(
         appBar: AppBar(
@@ -26,9 +28,17 @@ class Searchpage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SearchBar(
+                controller: searchController,
                 trailing: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SearchResultPage(
+                                    recipeName: searchController.text,
+                                  )));
+                    },
                     icon: Icon(
                       Icons.search,
                       color: Colors.amber,
@@ -57,7 +67,14 @@ class Searchpage extends StatelessWidget {
                     runSpacing: 20,
                     children: tag.map(
                       (e) {
-                        return ElevatedButton(onPressed: () {}, child: Text(e));
+                        return ElevatedButton(onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SearchResultPage(
+                                        recipeName: e,
+                                      )));
+                        }, child: Text(e));
                       },
                     ).toList(),
                   )),
