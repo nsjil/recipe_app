@@ -1,0 +1,36 @@
+[33mcommit b94558fb73b0e2cfdbb71ec7be48291f358fc040[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32msearch[m[33m)[m
+Merge: 9145ed6 3771507
+Author: Muhammedfahismp <95400446+Muhammedfahismp@users.noreply.github.com>
+Date:   Thu Mar 13 14:55:20 2025 +0530
+
+    Merge branch 'searchpage'
+
+[33mcommit 37715078e3f7b0a3922ebfbab822dbb16c55f7cd[m
+Author: Muhammedfahismp <95400446+Muhammedfahismp@users.noreply.github.com>
+Date:   Thu Mar 13 14:54:37 2025 +0530
+
+    code refactord for result page
+
+[33mcommit 72dbbfb5d3a1ff75c826ef2630ec567365fd96aa[m
+Author: Muhammedfahismp <95400446+Muhammedfahismp@users.noreply.github.com>
+Date:   Thu Mar 13 14:40:25 2025 +0530
+
+    created search result page
+
+[33mcommit 9145ed69a94ac4c910835215f9b85eea90c68d32[m
+Author: nsjil <najilkt2018@gmail.com>
+Date:   Thu Mar 13 14:35:29 2025 +0530
+
+    completed basic details page
+
+[33mcommit 162d85ef127bb379722dbf463724130ac96e6003[m
+Author: nsjil <najilkt2018@gmail.com>
+Date:   Mon Mar 10 16:07:23 2025 +0530
+
+    api service implimented successfully
+
+[33mcommit 98ea04e4b7d4a5b2a96f45cbc80a8d78fdc778b4[m
+Author: nsjil <najilkt2018@gmail.com>
+Date:   Fri Mar 7 15:12:16 2025 +0530
+
+    completed home feature ui
