@@ -56,8 +56,10 @@ class Categorywidget extends StatelessWidget {
                     ),
                     Text(
                       recipes[index].label!,
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          overflow: TextOverflow.ellipsis),
                     ),
                   ],
                 ),
@@ -67,7 +69,3 @@ class Categorywidget extends StatelessWidget {
         });
   }
 }
-
-
-
-

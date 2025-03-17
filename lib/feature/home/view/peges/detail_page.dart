@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipie/feature/home/model/item_models.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DetailPage extends StatelessWidget {
   final Recipe item;
@@ -45,7 +46,7 @@ class DetailPage extends StatelessWidget {
                 ),
                 Container(
                   height: hright * 0.04,
-                  width: width * 0.17,
+                  width: width * 0.18,
                   decoration: BoxDecoration(
                     color: Colors.lightGreen[300],
                     borderRadius: BorderRadius.circular(20),
@@ -87,7 +88,10 @@ class DetailPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () async {
+                    await Share.share(
+                        'Check out this recipe: ${item.label} - ${item.source}');
+                  },
                   child: CircleAvatar(
                     backgroundColor: Colors.red,
                     radius: 20,
@@ -98,7 +102,14 @@ class DetailPage extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    // Implement your download functionality here
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Download started...'),
+                      ),
+                    );
+                  },
                   child: CircleAvatar(
                     backgroundColor: Colors.red,
                     radius: 20,
@@ -161,7 +172,48 @@ class DetailPage extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          backgroundColor: Colors.red[400],
+                          title: Text('Total Nutrients'),
+                          content: SingleChildScrollView(
+                            child: ListBody(
+                              children:
+                                  item.totalNutrients!.entries.map((entry) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      entry.value.label!,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      'Quantity: ${entry.value.quantity!.toStringAsFixed(2)} ${entry.value.unit}',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    SizedBox(height: 10),
+                                  ],
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              child: Text('Close'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
                   child: CircleAvatar(
                     backgroundColor: Colors.red,
                     radius: 20,
