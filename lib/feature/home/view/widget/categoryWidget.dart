@@ -61,6 +61,26 @@ class Categorywidget extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           overflow: TextOverflow.ellipsis),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          recipes[index].source!,
+                          style: TextStyle(
+                              fontSize: 8,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                        ),
+                        Text(
+                          ' ${recipes[index].calories!.toStringAsFixed(2)} + CAL ',
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 8,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               );

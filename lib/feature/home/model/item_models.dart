@@ -45,7 +45,7 @@ class Recipe {
     this.digest,
   });
 
-  factory Recipe.fromJson(Map<String, dynamic> json) => Recipe(
+  factory Recipe.fromJson(Map<dynamic, dynamic> json) => Recipe(
         uri: json['uri'],
         label: json['label'],
         image: json['image'],
@@ -66,15 +66,15 @@ class Recipe {
         cuisineType: List<String>.from(json['cuisineType'] ?? []),
         mealType: List<String>.from(json['mealType'] ?? []),
         dishType: List<String>.from(json['dishType'] ?? []),
-        totalNutrients: (json['totalNutrients'] as Map<String, dynamic>?)
+        totalNutrients: (json['totalNutrients'] as Map<dynamic, dynamic>?)
             ?.map((k, v) => MapEntry(k, Total.fromJson(v))),
-        totalDaily: (json['totalDaily'] as Map<String, dynamic>?)
+        totalDaily: (json['totalDaily'] as Map<dynamic, dynamic>?)
             ?.map((k, v) => MapEntry(k, Total.fromJson(v))),
         digest:
             (json['digest'] as List?)?.map((e) => Digest.fromJson(e)).toList(),
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<dynamic, dynamic> toJson() => {
         'uri': uri,
         'label': label,
         'image': image,
@@ -121,7 +121,7 @@ class Digest {
     this.sub,
   });
 
-  factory Digest.fromJson(Map<String, dynamic> json) => Digest(
+  factory Digest.fromJson(Map<dynamic, dynamic> json) => Digest(
         label: json['label'],
         tag: json['tag'],
         schemaOrgTag: json['schemaOrgTag'],
@@ -132,7 +132,7 @@ class Digest {
         sub: (json['sub'] as List?)?.map((e) => Digest.fromJson(e)).toList(),
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<dynamic, dynamic> toJson() => {
         'label': label,
         'tag': tag,
         'schemaOrgTag': schemaOrgTag,
@@ -165,7 +165,7 @@ class Ingredient {
     this.image,
   });
 
-  factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
+  factory Ingredient.fromJson(Map<dynamic, dynamic> json) => Ingredient(
         text: json['text'],
         quantity: (json['quantity'] as num?)?.toDouble(),
         measure: json['measure'],
@@ -176,7 +176,7 @@ class Ingredient {
         image: json['image'],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<dynamic, dynamic> toJson() => {
         'text': text,
         'quantity': quantity,
         'measure': measure,
@@ -199,13 +199,13 @@ class Total {
     this.unit,
   });
 
-  factory Total.fromJson(Map<String, dynamic> json) => Total(
+  factory Total.fromJson(Map<dynamic, dynamic> json) => Total(
         label: json['label'],
         quantity: (json['quantity'] as num?)?.toDouble(),
         unit: json['unit'],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<dynamic, dynamic> toJson() => {
         'label': label,
         'quantity': quantity,
         'unit': unit,

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:recipie/feature/home/view/peges/search_result_page.dart';
 import 'package:recipie/feature/home/view/widget/tapber.dart';
@@ -17,7 +19,9 @@ class Homepage extends StatelessWidget {
           actions: [
             IconButton(
               icon: const Icon(Icons.exit_to_app),
-              onPressed: () {},
+              onPressed: () {
+                exit(0);
+              },
             ),
           ],
         ),
@@ -69,7 +73,6 @@ class Homepage extends StatelessWidget {
                     "Categories",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  InkWell(onTap: () {}, child: const Text("see all"))
                 ],
               ),
               const Tabbarwidget(),
@@ -78,4 +81,3 @@ class Homepage extends StatelessWidget {
         ));
   }
 }
-
