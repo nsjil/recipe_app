@@ -60,7 +60,7 @@ class DetailPage extends StatelessWidget {
                       } else {
                         return IconButton(
                             onPressed: () {
-                              box.put(item.uri, item.uri);
+                              box.put(item.uri, item.toJson());
                             },
                             icon: Icon(Icons.favorite_border));
                       }
