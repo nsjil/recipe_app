@@ -25,7 +25,7 @@ class FavoratPage extends StatelessWidget {
         children: [
           ValueListenableBuilder(
               valueListenable: dataBox.listenable(),
-              builder: (context, Box box, widget) {
+              builder: (context, Box box, _) {
                 var data = box.values.toList();
                 var modelData = data.map(
                   (e) {
