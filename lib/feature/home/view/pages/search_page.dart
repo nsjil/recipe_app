@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipie/feature/home/model/category_list_model.dart';
-import 'package:recipie/feature/home/view/peges/search_result_page.dart';
+import 'package:recipie/feature/home/view/pages/search_result_page.dart';
 
 class Searchpage extends StatelessWidget {
   const Searchpage({super.key});

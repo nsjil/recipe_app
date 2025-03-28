@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:recipie/feature/home/view/peges/search_result_page.dart';
+import 'package:recipie/feature/home/view/pages/search_result_page.dart';
 import 'package:recipie/feature/home/view/widget/tapber.dart';
 
 class Homepage extends StatelessWidget {

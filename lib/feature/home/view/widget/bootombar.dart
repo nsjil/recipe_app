@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:recipie/feature/home/view/peges/cart_page.dart';
-import 'package:recipie/feature/home/view/peges/catogory_page.dart';
-import 'package:recipie/feature/home/view/peges/home_page.dart';
-import 'package:recipie/feature/home/view/peges/search_page.dart';
+import 'package:recipie/feature/home/view/pages/cart_page.dart';
+import 'package:recipie/feature/home/view/pages/catogory_page.dart';
+import 'package:recipie/feature/home/view/pages/home_page.dart';
+import 'package:recipie/feature/home/view/pages/search_page.dart';
 
 class Bottombar extends StatefulWidget {
   const Bottombar({super.key});
